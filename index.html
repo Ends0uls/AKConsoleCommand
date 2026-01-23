@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arkham Knight Command Console</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="text-gray-100 bg-grid">
+    <!-- Skip to main content link for keyboard users -->
+    <a href="#commandsContainer" class="skip-link">Skip to Commands</a>
+    
+    <!-- Reading Guide (follows mouse when enabled) -->
+    <div class="reading-guide" id="readingGuide" aria-hidden="true"></div>
+    <header class="sticky top-0 z-50 glass border-b border-amber-500/20" role="banner">
+        <div class="max-w-7xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between flex-wrap gap-4">
+                <a href="#" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;" class="flex items-center gap-4 cursor-pointer hover:opacity-80 transition-opacity">
+                    <!-- 
+                    ====== CUSTOM HEADER ICON ======
+                    Replace the SVG below with your own image or icon
+                    
+                    RECOMMENDED SIZES:
+                    - Small: 40x40px (w-10 h-10)
+                    - Medium: 48x48px (w-12 h-12) [CURRENT]
+                    - Large: 64x64px (w-16 h-16)
+                    
+                    TO USE AN IMAGE FILE (PNG, JPG, GIF, WEBP):
+                    <img src="your-icon.png" class="w-12 h-12 bat-logo" alt="Logo">
+                    
+                    TO USE A DIFFERENT SVG:
+                    Just replace the SVG code below with your own SVG
+                    
+                    TO CHANGE SIZE:
+                    - Change w-12 h-12 to w-10 h-10 (smaller) or w-16 h-16 (larger)
+                    - For custom sizes use w-[64px] h-[64px] format
+                    
+                    TO REMOVE GLOW ANIMATION:
+                    Remove the "bat-logo" class
+                    
+                    EXAMPLE WITH CUSTOM IMAGE:
+                    <img src="images/my-batman-logo.png" class="w-16 h-16 bat-logo" alt="Arkham Knight Logo">
+                    ================================
+                    -->
+                    <svg class="w-12 h-12 text-amber-400 bat-logo" viewBox="0 0 100 50" fill="currentColor">
+                        <path d="M50 0 C45 8 38 15 28 18 C32 22 35 28 36 35 C30 32 22 30 15 32 C18 38 20 45 18 50 C12 45 5 42 0 45 C5 40 8 32 5 25 C2 28 0 32 0 32 C3 28 8 22 15 18 C10 15 5 10 2 5 C10 8 20 8 28 5 C32 12 40 18 50 18 C60 18 68 12 72 5 C80 8 90 8 98 5 C95 10 90 15 85 18 C92 22 97 28 100 32 C100 32 98 28 95 25 C92 32 95 40 100 45 C95 42 88 45 82 50 C80 45 82 38 85 32 C78 30 70 32 64 35 C65 28 68 22 72 18 C62 15 55 8 50 0z"/>
+                    </svg>
+                    <div>
+                        <h1 class="font-orbitron text-2xl md:text-3xl font-black text-amber-400 text-glow">ARKHAM KNIGHT</h1>
+                        <p class="text-xs md:text-sm text-gray-400 font-orbitron tracking-widest">COMMAND CONSOLE</p>
+                    </div>
+                </a>
+                <div class="flex items-center gap-2">
+                    <div class="relative">
+                        <input type="text" id="searchInput" placeholder="Search commands..." 
+                               class="w-48 md:w-64 px-4 py-2 pl-10 rounded-lg bg-black/40 border border-amber-500/30 text-white placeholder-gray-500 focus:outline-none focus:border-amber-400 focus:shadow-lg focus:shadow-amber-500/20 transition-all">
+                        <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                        </svg>
+                    </div>
+                    <button id="searchToggle" class="search-toggle active" onclick="toggleSearchMode()">
+                        <span id="searchModeText">Exact</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-4 py-8">
+        <div class="glass rounded-2xl p-6 md:p-8 glow-amber">
+            <h2 class="font-orbitron text-xl md:text-2xl font-bold text-amber-400 mb-4">Welcome</h2>
+            <p class="text-gray-300 mb-4">This command list contains many of the commands you can use in Arkham Knight. Before using them, watch these tutorials:</p>
+            <div class="flex flex-wrap gap-3 mb-4">
+                <a href="https://www.youtube.com/watch?v=fbVbkLzM8rY&t=10s" target="_blank" rel="noopener noreferrer" class="tutorial-link">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    How To Install Command Console
+                </a>
+                <a href="https://www.youtube.com/watch?v=NcvzZl5vXng&t=107s" target="_blank" rel="noopener noreferrer" class="tutorial-link">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    Command Console on PC
+                </a>
+                <a href="https://docs.google.com/document/d/1Eqyk32o1c_Z6fqD47s24g-P18Hka8TO9iap2M03GuBI/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="tutorial-link">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 2l5 5h-5V4zM6 20V4h5v7h7v9H6z"/><path d="M8 12h8v2H8zm0 4h8v2H8z"/></svg>
+                    Original Command Doc
+                </a>
+            </div>
+            <div class="bg-amber-500/10 border border-amber-500/30 rounded-lg p-4 mb-4">
+                <p class="text-amber-300 text-sm"><strong>Tip:</strong> To turn off all commands and reset to default game values, simply restart the game. All command changes are temporary and only last until you close the game.</p>
+            </div>
+            <p class="text-sm text-gray-500">Credit to Mrjag for the videos and command list base</p>
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 pb-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="glass rounded-xl p-4 text-center">
+                <div class="font-orbitron text-2xl md:text-3xl font-bold text-amber-400" id="totalCommands">0</div>
+                <div class="text-xs text-gray-400 uppercase tracking-wider">Total Commands</div>
+            </div>
+            <div class="glass rounded-xl p-4 text-center">
+                <div class="font-orbitron text-2xl md:text-3xl font-bold text-blue-400">5</div>
+                <div class="text-xs text-gray-400 uppercase tracking-wider">Categories</div>
+            </div>
+            <div class="glass rounded-xl p-4 text-center">
+                <div class="font-orbitron text-2xl md:text-3xl font-bold text-green-400" id="copiedCount">0</div>
+                <div class="text-xs text-gray-400 uppercase tracking-wider">Copied Today</div>
+            </div>
+            <div class="glass rounded-xl p-4 text-center">
+                <div class="font-orbitron text-2xl md:text-3xl font-bold text-purple-400">∞</div>
+                <div class="text-xs text-gray-400 uppercase tracking-wider">Possibilities</div>
+            </div>
+        </div>
+    </section>
+
+    <main class="max-w-7xl mx-auto px-4 pb-48" id="commandsContainer" role="main" aria-label="Command list"></main>
+
+    <div id="noResults" class="no-results hidden max-w-7xl mx-auto">
+        <svg class="w-16 h-16 mx-auto mb-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+        </svg>
+        <p class="text-xl font-orbitron text-gray-500">No commands found</p>
+        <p class="text-gray-600 mt-2">Try a different search term or switch to fuzzy search</p>
+    </div>
+
+    <div id="commandCart" class="command-cart">
+        <div class="max-w-7xl mx-auto">
+            <div class="command-cart-header">
+                <span class="command-cart-title">Combined Command List</span>
+                <span class="command-cart-count"><span id="cartCount">0</span> commands</span>
+            </div>
+            <div class="command-cart-content" id="cartContent">
+                No commands added yet
+            </div>
+            <div class="command-cart-actions">
+                <button class="cart-copy-btn" onclick="copyCart()" title="Copy the combined command to clipboard">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                    </svg>
+                    Copy Combined Command
+                </button>
+                <button class="cart-clear-btn" onclick="clearCart()" title="Remove all commands from the list">
+                    Clear All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed bottom-6 right-6 px-6 py-3 rounded-lg bg-green-500 text-white font-semibold transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex items-center gap-2">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+        </svg>
+        <span>Command copied!</span>
+    </div>
+
+    <!-- Accessibility Widget -->
+    <button class="a11y-toggle" id="a11yToggle" onclick="toggleA11yPanel()" aria-label="Open accessibility options" title="Accessibility Options">
+        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+        </svg>
+    </button>
+
+    <div class="a11y-panel" id="a11yPanel" role="dialog" aria-labelledby="a11yTitle" aria-modal="true">
+        <div class="a11y-panel-header">
+            <span class="a11y-panel-title" id="a11yTitle">Accessibility</span>
+            <button class="a11y-close" onclick="toggleA11yPanel()" aria-label="Close accessibility panel">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="a11y-section">
+            <div class="a11y-section-title">Text Size</div>
+            <div class="a11y-option">
+                <span class="a11y-option-label">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+                    </svg>
+                    Adjust Font Size
+                </span>
+                <div class="a11y-font-size">
+                    <button class="a11y-font-btn" onclick="adjustFontSize(-10)" aria-label="Decrease font size">−</button>
+                    <span class="a11y-font-size-value" id="fontSizeValue">100%</span>
+                    <button class="a11y-font-btn" onclick="adjustFontSize(10)" aria-label="Increase font size">+</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="a11y-section">
+            <div class="a11y-section-title">Vision</div>
+            <div class="a11y-option">
+                <label class="a11y-option-label" for="a11yHighContrast">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+                    </svg>
+                    High Contrast
+                </label>
+                <label class="a11y-option-toggle">
+                    <input type="checkbox" id="a11yHighContrast" onchange="toggleA11yOption('high-contrast', this.checked)">
+                    <span class="a11y-option-slider"></span>
+                </label>
+            </div>
+            <div class="a11y-option">
+                <label class="a11y-option-label" for="a11yGrayscale">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                    </svg>
+                    Grayscale
+                </label>
+                <label class="a11y-option-toggle">
+                    <input type="checkbox" id="a11yGrayscale" onchange="toggleA11yOption('grayscale', this.checked)">
+                    <span class="a11y-option-slider"></span>
+                </label>
+            </div>
+            <div class="a11y-option">
+                <label class="a11y-option-label" for="a11yLargeCursor">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/>
+                    </svg>
+                    Large Cursor
+                </label>
+                <label class="a11y-option-toggle">
+                    <input type="checkbox" id="a11yLargeCursor" onchange="toggleA11yOption('large-cursor', this.checked)">
+                    <span class="a11y-option-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="a11y-section">
+            <div class="a11y-section-title">Reading</div>
+            <div class="a11y-option">
+                <label class="a11y-option-label" for="a11yDyslexia">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                    </svg>
+                    Dyslexia Friendly
+                </label>
+                <label class="a11y-option-toggle">
+                    <input type="checkbox" id="a11yDyslexia" onchange="toggleA11yOption('dyslexia', this.checked)">
+                    <span class="a11y-option-slider"></span>
+                </label>
+            </div>
+            <div class="a11y-option">
+                <label class="a11y-option-label" for="a11yTextSpacing">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"/>
+                    </svg>
+                    Text Spacing
+                </label>
+                <label class="a11y-option-toggle">
+                    <input type="checkbox" id="a11yTextSpacing" onchange="toggleA11yOption('text-spacing', this.checked)">
+                    <span class="a11y-option-slider"></span>
+                </label>
+            </div>
+            <div class="a11y-option">
+                <label class="a11y-option-label" for="a11yReadingGuide">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7"/>
+                    </svg>
+                    Reading Guide
+                </label>
+                <label class="a11y-option-toggle">
+                    <input type="checkbox" id="a11yReadingGuide" onchange="toggleA11yOption('reading-guide', this.checked)">
+                    <span class="a11y-option-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="a11y-section">
+            <div class="a11y-section-title">Navigation</div>
+            <div class="a11y-option">
+                <label class="a11y-option-label" for="a11yHighlightLinks">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                    </svg>
+                    Highlight Links
+                </label>
+                <label class="a11y-option-toggle">
+                    <input type="checkbox" id="a11yHighlightLinks" onchange="toggleA11yOption('highlight-links', this.checked)">
+                    <span class="a11y-option-slider"></span>
+                </label>
+            </div>
+            <div class="a11y-option">
+                <label class="a11y-option-label" for="a11yFocusIndicator">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
+                    Focus Indicators
+                </label>
+                <label class="a11y-option-toggle">
+                    <input type="checkbox" id="a11yFocusIndicator" onchange="toggleA11yOption('focus-indicator', this.checked)">
+                    <span class="a11y-option-slider"></span>
+                </label>
+            </div>
+            <div class="a11y-option">
+                <label class="a11y-option-label" for="a11yReduceMotion">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+                    </svg>
+                    Reduce Motion
+                </label>
+                <label class="a11y-option-toggle">
+                    <input type="checkbox" id="a11yReduceMotion" onchange="toggleA11yOption('reduce-motion', this.checked)">
+                    <span class="a11y-option-slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <button class="a11y-reset" onclick="resetA11yOptions()">
+            Reset All Settings
+        </button>
+    </div>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal" onclick="closeVideoModal(event)">
+        <div class="video-modal-content" onclick="event.stopPropagation()">
+            <div class="video-modal-header">
+                <span class="video-modal-title" id="videoModalTitle">Command Demo</span>
+                <button class="video-modal-close" onclick="closeVideoModal()" title="Close">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="video-container" id="videoContainer">
+                <!-- Video will be inserted here, or WIP message -->
+                <svg class="w-16 h-16 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+                <span class="wip-text">Work In Progress</span>
+                <span class="wip-subtext">Video demonstration coming soon</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
