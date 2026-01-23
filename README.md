@@ -16,10 +16,10 @@ features
 
 
 
-Todo 
+# Todo 
 - add proper logo
 - add videos - big
 - add commands - general forver
+- give proper domain and name lol 
 
-
-Join workshop - https://discord.gg/arkhamworkshop
+## Join workshop - https://discord.gg/arkhamworkshop
