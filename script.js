@@ -123,7 +123,7 @@ const commandData = {
             { name: "Disable charge attacks", cmd: "set BmGame.RBMCombatManager bDisableChargeAttack", type: "toggle", onValue: "true", offValue: "false", defaultState: true },
             { name: "Disable grab attacks", cmd: "set BmGame.RBMCombatManager bDisableGrabAttack", type: "toggle", onValue: "true", offValue: "false", defaultState: true },
             { name: "Combo Special Limit", cmd: "set RPlayerControllerCombat AdrenalineSpecialLimit {value}", type: "number", param: "value", default: 5, min: 1, max: 20, step: 1, desc: "Alt to unlimited combo takedowns - set the limit high or low" },
-            { name: "Dual Takedown Limit", cmd: "set RPlayerControllerCombat DualPlayAdrenalineSpecialLimit {value}", type: "number", param: "value", default: 6, min: 1, max: 20, step: 1" }
+            { name: "Dual Takedown Limit", cmd: "set RPlayerControllerCombat DualPlayAdrenalineSpecialLimit {value}", type: "number", param: "value", default: 6, min: 1, max: 20, step: 1 }
         ],
         "Misc": [
         ],
