@@ -126,8 +126,6 @@ const commandData = {
             { name: "Dual Takedown Limit", cmd: "set RPlayerControllerCombat DualPlayAdrenalineSpecialLimit {value}", type: "number", param: "value", default: 6, min: 1, max: 20, step: 1 }
         ],
         "Misc": [
-        ],
-        "Misc": [
             { name: "Enable dive boost", cmd: "Set RPawnPlayer bCanDiveBoost", type: "toggle", onValue: "1", offValue: "0", defaultState: true },
             { name: "Enable cape gliding", cmd: "Set RPawnPlayer bCanCapeGlide", type: "toggle", onValue: "1", offValue: "0", defaultState: true },
             { name: "Toggle combat camera", cmd: "set BmGame.RGameRI bBatmanInCombat", type: "toggle", onValue: "true", offValue: "false", defaultState: true },
