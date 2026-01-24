@@ -122,7 +122,7 @@ const commandData = {
             { name: "Freeze multiple thugs", cmd: "set BmGame.RBMBehaviour_FreezeBlastHit bCantUnFreeze", type: "toggle", onValue: "1", offValue: "0", defaultState: true },
             { name: "Disable charge attacks", cmd: "set BmGame.RBMCombatManager bDisableChargeAttack", type: "toggle", onValue: "true", offValue: "false", defaultState: true },
             { name: "Disable grab attacks", cmd: "set BmGame.RBMCombatManager bDisableGrabAttack", type: "toggle", onValue: "true", offValue: "false", defaultState: true }
-            { name: "Combo Bar limit changer", cmd: "set RPlayerControllerCombat AdrenalineSpecialLimit 5", type: "number", param: "value", default: 5.0, min: 0.1, max: 50, step: 0.5 }
+            { name: "Combo Bar limit changer", cmd: "set RPlayerControllerCombat AdrenalineSpecialLimit", type: "number", param: "value", default: 5.0, min: 0.1, max: 50, step: 0.5 }
 
         ],
         "Misc": [
