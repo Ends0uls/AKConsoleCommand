@@ -122,7 +122,7 @@ const commandData = {
             { name: "Freeze multiple thugs", cmd: "set BmGame.RBMBehaviour_FreezeBlastHit bCantUnFreeze", type: "toggle", onValue: "1", offValue: "0", defaultState: true },
             { name: "Disable charge attacks", cmd: "set BmGame.RBMCombatManager bDisableChargeAttack", type: "toggle", onValue: "true", offValue: "false", defaultState: true },
             { name: "Disable grab attacks", cmd: "set BmGame.RBMCombatManager bDisableGrabAttack", type: "toggle", onValue: "true", offValue: "false", defaultState: true },
-            { name: "Combo Special Limit", cmd: "set RPlayerControllerCombat AdrenalineSpecialLimit {value}", type: "number", param: "value", default: 5, min: 1, max: 20, step: 1,desc: "Alt To unlimted Combo takedowns where you can set the limit as high or low to allow takedown/barstuff" }
+            { name: "Combo Special Limit", cmd: "set RPlayerControllerCombat AdrenalineSpecialLimit {value}", type: "number", param: "value", default: 5, min: 1, max: 20, step: 1, desc: "Alt to unlimited combo takedowns - set the limit high or low" }
         ],
         "Misc": [
             { name: "Enable dive boost", cmd: "Set RPawnPlayer bCanDiveBoost", type: "toggle", onValue: "1", offValue: "0", defaultState: true },
