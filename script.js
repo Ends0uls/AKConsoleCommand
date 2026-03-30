@@ -265,7 +265,18 @@ const commandData = {
             { name: "Seagate Amusement Park", cmd: "TeleportTo 6077 -462 11316 0 DLCOilrig_D1", type: "simple" },
             { name: "Arkham Mansion", cmd: "TeleportTo 33081 30462 98 0 JokerBoss_B1", type: "simple" },
             { name: "Arkham Medical", cmd: "TeleportTo -1203 -11340 1381 0 Medical_A", type: "simple" },
-            { name: "Return To Gotham", cmd: "TeleportTo -131087 -62998 464 0 CityX_15", type: "simple" }
+            { name: "Return To Gotham", cmd: "TeleportTo -131087 -62998 464 0 CityX_15", type: "simple" },
+            { name: "Penguin DockYard", cmd: "TeleportTo -34890 -14587 16617 0 RTClassic_01", type: "simple" },
+            { name: "Batcave Set", cmd: "TeleportTo -36329 -14577 16602 0 RTClassic_02", type: "simple" },
+            { name: "Ashes", cmd: "TeleportTo -13959 -17555 -1492 0 RTTumbler_01", type: "simple" },
+            { name: "Cataclysm", cmd: "TeleportTo -41658 -6485 5415 0 RTTumbler_02", type: "simple" },
+            { name: "Cobblepot's Causeway", cmd: "TeleportTo -18972 7126 11330 0 RTBurton_01", type: "simple" },
+            { name: "Joker Parade", cmd: "TeleportTo -1407 -26721 15410 0 RTBurton_02", type: "simple" },
+            { name: "Crushonator", cmd: "TeleportTo -102245 -88361 -12908 0 Orphan_C8", type: "simple" },
+            { name: "Mental Blocked", cmd: "TeleportTo -71156 -57413 -14522 0 Orphan_C6", type: "simple" },
+            { name: "BPD Parking", cmd: "TeleportTo -4358 1850 98 0 DLCHarleyPolice_A1", type: "simple" },
+            { name: "BPD Control Room", cmd: "TeleportTo -522 -954 610 0 DLCHarleyPolice_A2", type: "simple" },
+            { name: "BPD Reception", cmd: "TeleportTo 4734 -2000 610 0 DLCHarleyPolice_C1", type: "simple" }
         ],
         "Bridge Controls": [
             { name: "Lower Mercy Bridge", cmd: "re Lower_Bridge_X_Z", type: "simple" },
