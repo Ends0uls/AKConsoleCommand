@@ -276,7 +276,9 @@ const commandData = {
             { name: "Mental Blocked", cmd: "TeleportTo -71156 -57413 -14522 0 Orphan_C6", type: "simple" },
             { name: "BPD Parking", cmd: "TeleportTo -4358 1850 98 0 DLCHarleyPolice_A1", type: "simple" },
             { name: "BPD Control Room", cmd: "TeleportTo -522 -954 610 0 DLCHarleyPolice_A2", type: "simple" },
-            { name: "BPD Reception", cmd: "TeleportTo 4734 -2000 610 0 DLCHarleyPolice_C1", type: "simple" }
+            { name: "BPD Reception", cmd: "TeleportTo 4734 -2000 610 0 DLCHarleyPolice_C1", type: "simple" },
+            { name: "BPD Basement", cmd: "TeleportTo 3865 -1974 -2961 0 DLCHarleyPolice_A3", type: "simple" }
+
         ],
         "Bridge Controls": [
             { name: "Lower Mercy Bridge", cmd: "re Lower_Bridge_X_Z", type: "simple" },
